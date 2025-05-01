@@ -43,7 +43,6 @@ mysqlclient==2.2.6
 networke==4.1
 networkx==3.2.1
 nltk==3.8.1
-numpy==1.26.2
 opencv-python==4.9.0.80
 packaging==23.2
 pandas==2.1.3
