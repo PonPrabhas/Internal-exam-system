@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <style>
+form{
+           margin: 50px;
+
+        }
+       body {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      background: url('{% static "image/bgimage2.avif" %}') no-repeat center center fixed;
+
+      background-size: cover; /* Ensures the image covers the whole screen */
+      color: white; /* Ensures text is readable */
+
+      margin: 0;
+      padding: 0;
+      font-weight: bold;
+    }
+    h3 {
+    color: white; /* Make heading visible */
+    font-weight: bold;
+    }
+
+    label {
+    color: white; /* Make labels visible */
+    font-size: 16px;
+    }
+    .container {
+    background: rgba(0, 0, 0, 0.6); /* Dark transparent background */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+    </style>
+  </head>
+  <body>
+    {% include "exam/navbar.html" %}
+
+
+
+<br><br><br>
+<div class="container">
+  <h3 style="text-align: center;">Teacher Signup Form</h3>
+<form method="POST" autocomplete="off" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="first_name">First Name</label>
+          {% render_field userForm.first_name|attr:'required:true'  class="form-control"  placeholder="First Name" %}
+        </div>
+        <div class="form-group col-md-6">
+          <label for="last_name">Last Name</label>
+          {% render_field userForm.last_name|attr:'required:true'  class="form-control" placeholder="Last Name" %}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="mobile">Contact</label>
+          {% render_field teacherForm.mobile|attr:'required:true'  class="form-control" placeholder="Contact Number" %}
+        </div>
+        <div class="form-group col-md-6">
+          <label for="address">Department</label>
+          {% render_field teacherForm.address|attr:'required:true'  class="form-control" placeholder="department" %}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="username">EmployeeID</label>
+          {% render_field userForm.username|attr:'required:true'  class="form-control" placeholder="Employee_id" %}
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Password</label>
+          {% render_field userForm.password|attr:'required:true'  class="form-control" placeholder="password" %}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="profile_pic">Profile Picture</label>
+          {% render_field teacherForm.profile_pic|attr:'required:true' class="form-control" placeholder="" %}
+        </div>
+
+      </div>
+
+
+    <button type="submit" class="btn btn-success" style="border-radius:0px;">Sign Up</button>
+  </form>
+</div>
+
+
+<br><br>
+{% include "exam/footer.html" %}
+  </body>
+</html>

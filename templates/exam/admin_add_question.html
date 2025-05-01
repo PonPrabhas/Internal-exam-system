@@ -1,0 +1,166 @@
+{% extends 'exam/adminbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+      background-color: #f4f4f4;
+      color: #333;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    h2 {
+      background: linear-gradient(45deg, #0047ff, #0088ff, #00c3ff, #ff7300, #ff0000);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    form {
+      background: linear-gradient(45deg, #f7f7f8, #080808);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      color: #555;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .form-control {
+      transition: all 0.3s ease-in-out;
+    }
+
+    .form-control:focus {
+      border-color: #007bff;
+      box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.5);
+    }
+
+    button {
+      transition: background 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background: #0056b3 !important;
+    }
+  </style>
+
+  <script>
+    function toggleQuestionType() {
+        var type = document.getElementById("id_question_type").value;
+        var mcqFields = document.getElementById("mcq-fields");
+        var subjectiveFields = document.getElementById("subjective-fields");
+
+        if (type === "MCQ") {
+            mcqFields.style.display = "block";
+            subjectiveFields.style.display = "none";
+        } else {
+            mcqFields.style.display = "none";
+            subjectiveFields.style.display = "block";
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        toggleQuestionType();
+    });
+  </script>
+
+</head>
+
+<h2>Add Question</h2>
+
+<form method="POST" action="{% url 'admin-add-question' %}">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label>Course</label>
+        {{ questionForm.courseID|add_class:"form-control" }}
+
+        <br>
+
+        <label>Question Type</label>
+        {{ questionForm.question_type|add_class:"form-control"|attr:"onchange:toggleQuestionType()"|attr:"required:required" }}
+
+        <br>
+
+        <label>Question</label>
+        {{ questionForm.question|add_class:"form-control"|attr:"placeholder:Enter your question"|attr:"required:required" }}
+
+        <br>
+
+        <label>Marks</label>
+        {{ questionForm.marks|add_class:"form-control"|attr:"placeholder:Example: 5"|attr:"required:required" }}
+        <br>
+
+        <!-- MCQ Fields -->
+        <div id="mcq-fields">
+            <label>Option 1</label>
+            {{ questionForm.option1|add_class:"form-control"|attr:"placeholder:Enter Option 1" }}
+            <br>
+
+            <label>Option 2</label>
+            {{ questionForm.option2|add_class:"form-control"|attr:"placeholder:Enter Option 2" }}
+            <br>
+
+            <label>Option 3</label>
+            {{ questionForm.option3|add_class:"form-control"|attr:"placeholder:Enter Option 3" }}
+            <br>
+
+            <label>Option 4</label>
+            {{ questionForm.option4|add_class:"form-control"|attr:"placeholder:Enter Option 4" }}
+            <br>
+
+            <label>Correct Answer</label>
+            <select id="mcq-answer" name="answer" class="form-control">
+                <option value="Option1">Option1</option>
+                <option value="Option2">Option2</option>
+                <option value="Option3">Option3</option>
+                <option value="Option4">Option4</option>
+            </select>
+        </div>
+
+        <!-- Subjective Fields -->
+        <div id="subjective-fields" style="display: none;">
+            <label>Correct Answer</label>
+            {{ questionForm.answer|add_class:"form-control"|attr:"placeholder:Enter the expected answer" }}
+            <br>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit Question</button>
+</form>
+
+<script>
+    function toggleQuestionType() {
+        var type = document.getElementById("id_question_type").value;
+        var mcqFields = document.getElementById("mcq-fields");
+        var subjectiveFields = document.getElementById("subjective-fields");
+
+        if (type === "MCQ") {
+            mcqFields.style.display = "block";
+            subjectiveFields.style.display = "none";
+        } else {
+            mcqFields.style.display = "none";
+            subjectiveFields.style.display = "block";
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        toggleQuestionType();
+    });
+</script>
+
+<br><br><br>
+{% endblock content %}

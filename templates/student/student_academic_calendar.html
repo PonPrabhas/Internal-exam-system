@@ -1,0 +1,17 @@
+{% extends 'student/studentbase.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h3>📅 Academic Calendar</h3>
+  <ul class="list-group">
+    {% for c in calendars %}
+      <li class="list-group-item">
+        {{ c.course.course_name }} -
+        <a href="{{ c.file.url }}" target="_blank">View / Download</a>
+      </li>
+    {% empty %}
+      <li class="list-group-item">No academic calendar uploaded yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
+<br><br><br><br><br><br>

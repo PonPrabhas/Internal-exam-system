@@ -1,0 +1,118 @@
+{% extends 'student/studentbase.html' %}
+{% block content %}
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css" rel="stylesheet" />
+  <style>
+    .calendar-container {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .calendar-box {
+      margin: 30px auto 0 auto;
+      padding: 20px;
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 800px;
+    }
+
+    .pdf-link {
+      margin-top: 15px;
+      background: #0041ff;
+    }
+
+    h3 {
+      font-weight: bold;
+      color: #003366;
+    }
+
+.calendar-box {
+  margin: 30px auto;
+  padding: 20px;
+  background: linear-gradient(to right, #cfd9df, #e2ebf0);
+  border-radius: 14px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+}
+
+/* Day grid cell background with subtle gradient */
+.fc .fc-daygrid-day-frame {
+  background: linear-gradient(135deg, #e3f2fd, #f0f4ff);
+  border-radius: 10px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  border: 1px solid #dee2e6;
+}
+
+/* On hover: slightly lift and highlight the cell */
+.fc .fc-daygrid-day-frame:hover {
+  background: linear-gradient(135deg, #d1eaff, #e3f2fd);
+  transform: scale(1.02);
+}
+
+/* Day number style */
+.fc .fc-daygrid-day-number {
+  color: #000000;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  display: block;
+}
+
+
+
+    .fc .fc-event {
+      font-size: 0.85rem;
+      padding: 4px 6px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<div class="calendar-container">
+  <h3>📅 Academic Calendar</h3><br>
+  <h4>You can view Academic calendar here 👇🏻</h4>
+  {% if calendar %}
+    <a href="{{ calendar.file.url }}" target="_blank" class="btn btn-info pdf-link">
+      View Uploaded Academic Calendar (PDF)
+    </a>
+  {% else %}
+    <p>No academic calendar uploaded yet.</p>
+  {% endif %}
+ <br><br> <h3> Scheduled Exam Dates🗓</h3>
+  <div id="calendar" class="calendar-box"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      height: 400,
+      contentHeight: 400,
+      events: [
+        {
+          title: 'Internal Exam I',
+          start: '2025-02-03',
+          color: '#007bff'
+        },
+        {
+          title: 'Internal Exam II',
+          start: '2025-03-03',
+          color: '#28a745'
+        },
+        {
+          title: 'Internal Exam III',
+          start: '2025-04-01',
+          color: '#dc3545'
+        }
+
+      ]
+    });
+    calendar.render();
+  });
+</script>
+{% endblock %}

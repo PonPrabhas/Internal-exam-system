@@ -1,0 +1,78 @@
+{% extends 'teacher/teacherbase.html' %}
+
+{% block content %}
+<head>
+    <style>
+        /* Centering the container */
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60vh; /* Adjust height */
+            flex-direction: column;
+        }
+
+        /* Card styling */
+        .order-card {
+            background: linear-gradient(109deg, #657eac, #254ac7); /* Green gradient */
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease-in-out, opacity 0.5s ease-in-out;
+            text-align: center;
+            color: white;
+            width: 350px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hover effect */
+        .order-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Text styles */
+        p {
+            color: black; /* Set paragraph text color to black */
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<div class="container center-container">
+    <h2 class="text-center">Manage Subjective Questions</h2>
+
+    <a href="{% url 'teacher-generate-subjective-questions' %}" style="text-decoration: none;">
+        <div class="card order-card">
+            <h6 class="m-b-20">Generate Subjective Questions</h6>
+            <h2 class="text-right"><i class="fas fa-cogs"></i></h2>
+        </div>
+    </a>
+    <br><br><br><br>
+    <a href="{% url 'teacher-upload-subjective-questions' %}" style="text-decoration: none;">
+        <div class="card order-card" style="background: linear-gradient(270deg,rgba(195,34,183,1) 0%, rgba(3,84,255,1) 100%);">
+            <h6>Upload Subjective Questions</h6>
+            <h2><i class="fas fa-upload"></i></h2>
+        </div>
+    </a>
+
+    <br><br><br>
+
+    <p class="text-center">Here, you can add, view, and modify subjective questions.</p>
+</div>
+
+{% endblock %}

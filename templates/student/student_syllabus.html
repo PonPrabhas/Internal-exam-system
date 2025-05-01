@@ -1,0 +1,16 @@
+{% extends 'student/studentbase.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h3>📘 Available Syllabus</h3>
+  <ul class="list-group">
+    {% for s in syllabi %}
+      <li class="list-group-item">
+        {{ s.course.course_name }} -
+        <a href="{{ s.file.url }}" target="_blank">View / Download</a>
+      </li>
+    {% empty %}
+      <li class="list-group-item">No syllabus uploaded yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

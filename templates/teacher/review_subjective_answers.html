@@ -1,0 +1,31 @@
+{% extends 'teacher/teacherbase.html' %}
+{% block content %}
+<div style="padding: 20px;">
+  <h2>Review Student Answers</h2>
+  <table border="1" cellpadding="10" style="border-collapse: collapse; width: 100%;">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>Marks</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for answer in answers %}
+      <tr>
+        <form method="POST" action="{% url 'update-marks' answer.id %}">
+          {% csrf_token %}
+          <td>{{ answer.student.get_full_name }}</td>
+          <td>{{ answer.question.question_text }}</td>
+          <td>{{ answer.answer }}</td>
+          <td><input type="number" name="marks" value="{{ answer.marks }}"></td>
+          <td><button type="submit">Save</button></td>
+        </form>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

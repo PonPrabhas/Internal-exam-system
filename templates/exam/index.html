@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Raleway', sans-serif;
+      color: white;
+      margin: 0;
+      padding: 0;
+      font-weight: bold;
+<!--      background: url("{% static 'image/banner.jpg' %}") no-repeat center center fixed;-->
+      background-size: cover;
+    }
+
+    /* Marquee Container */
+    .marquee-container {
+      width: 100%;
+      background-color: #ffcc00;
+      padding: 5px 0;
+      height: 30px;
+      overflow: hidden;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+    }
+
+    /* Using Marquee Tag */
+    marquee {
+      font-size: 1rem;
+      font-weight: bold;
+      color: black;
+    }
+
+    .jumbotron {
+      background: floralwhite;
+      text-align: center;
+      padding: 60px 20px;
+      min-height: 100vh;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* University Header */
+    .university-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .university-logo {
+      width: 80px;
+      /* Increased size */
+      height: auto;
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+      /* Adds contrast */
+
+    }
+
+    .university-name {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #1f51ff;
+    }
+
+    .jumbotron h3 {
+      font-size: 1.8rem;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .sub-heading {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .lead {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: black;
+    }
+
+    .btn-info {
+      background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      text-transform: uppercase;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-info:hover {
+      background: linear-gradient(45deg, #ff9a66, #fc6076, #d62976, #8a3ab9, #4f5bd5);
+    }
+
+    .footer {
+      background-color: #1f51ff;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Include Navbar -->
+  {% include "exam/navbar.html" %}
+
+  <!-- Marquee Section -->
+  <div class="marquee-container">
+    <marquee direction="left">📢 Announcements | Upcoming Exams | Important Dates | Stay Updated!</marquee>
+  </div>
+
+  <section id="section-jumbotron" class="jumbotron">
+    <div class="container">
+      <!-- University Name with Logo -->
+      <div class="university-header">
+        <img src="{% static 'image/msu_logo.png' %}" alt="University Logo" class="university-logo">
+        <h1 class="university-name">Manonmaniam Sundaranar University</h1>
+      </div>
+      <h3>Internal Examination System</h3>
+      <p class="sub-heading">Attend Your Internals!</p>
+      <p style="color: #1f51ff;">Sign up now to start your examination</p>
+
+      <a href="/student/studentsignup" class="btn btn-lg btn-info">
+        <i class="fa fa-graduation-cap" aria-hidden="true"></i> Sign Up as Student
+      </a>
+    </div>
+  </section>
+
+  {% include "exam/footer.html" %}
+
+</body>
+
+</html>

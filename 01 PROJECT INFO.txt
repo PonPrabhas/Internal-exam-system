@@ -1,0 +1,31 @@
+**Log on to codeastro.com for more projects!**
+
+**Developed By Sumit Kumar**
+
+**Instructions**
+- Install the Requirements: pip install -r requirements.txt
+- Then, make database migrations: python manage.py makemigrations
+- python manage.py migrate
+- And finally, run the application: python manage.py runserver
+
+For Admin Account, please create one with superuser!
+
+
+**For Contact Us Page**
+Make changes with the email credentials under settings.py
+
+
+for viewing database or tables
+python manage.py shell
+from student.models import Student
+Student.objects.all()
+
+
+ View database schema (fields of a model)
+Student._meta.get_fields()
+for field in Student._meta.fields:
+    print(field.name)
+
+Teacher._meta.get_fields()
+for field in Teacher._meta.fields:
+    print(field.name)

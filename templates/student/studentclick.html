@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <style media="screen">
+   body {
+      font-family: 'Raleway Bold';
+      background-size: cover; /* Ensures the image covers the whole screen */
+      color: white; /* Ensures text is readable */
+
+      margin: 0;
+      padding: 0;
+      font-weight: bold;
+    }
+    .display-4 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      font-family: 'Raleway', sans-serif;
+      background: linear-gradient(45deg, #7f00ff, #e100ff, #ff007f, #ff004d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .jumbotron {
+       background: none !important;
+       background-color: transparent !important;
+       border: none;
+      margin-bottom: 0;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+
+
+    .jumbotron h1 {
+      text-align: center;
+    }
+    .btn-primary {
+      background: linear-gradient(45deg, #007bff, #0056b3);
+
+      color: white !important;
+      border: none;
+    }
+
+    .btn-success {
+      background: linear-gradient(45deg, #28a745, #1e7e34);
+      /* Green gradient */
+      color: white !important;
+      border: none;
+    }
+    .btn {
+    -webkit-text-fill-color: white !important;
+}
+    .btn-primary, .btn-success {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+    .p{
+    background: linear-gradient(45deg, #0047ff, #0088ff, #00c3ff, #ff7300, #ff0000);
+    }
+
+
+    hr.my-4 {
+      border-top: 2px solid #003366;
+      width: 50%;
+      margin: 20px auto;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  {% include "exam/navbar.html" %}
+  <br><br>
+  <div class="jumbotron">
+    <h1 class="display-4">Hello Student,</h1>
+    <p class="lead"><b>and Welcome to Online Examination System</b></p>
+    <hr class="my-4">
+    <p>Select any of them to access into the system</p>
+    <p class="lead">
+      <a class="btn btn-primary " href="studentsignup" role="button">Create Your Account</a>
+      <a class="btn btn-success " href="studentlogin"  role="button">Login Now</a>
+    </p>
+    <br><br><br><br><br><br>
+  </div>
+ 
+  {% include "exam/footer.html" %}
+</body>
+
+</html>

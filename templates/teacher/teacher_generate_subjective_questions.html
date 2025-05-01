@@ -1,0 +1,80 @@
+{% extends 'teacher/teacherbase.html' %}
+
+{% block content %}
+<head>
+    <style>
+        /* Centering the form container */
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh; /* Full page height */
+            flex-direction: column;
+        }
+
+        /* Form box styling */
+        .form-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        /* Label styles */
+        label {
+            font-weight: bold;
+        }
+
+        /* Input fields styling */
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Submit button */
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(90deg, #007bff, #0056b3);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #0056b3, #003f7f);
+        }
+    </style>
+</head>
+
+<div class="container center-container">
+    <div class="form-container">
+        <h2 class="text-center mb-3">Generate Subjective Questions</h2>
+        <hr>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="course">Select Course:</label>
+                {{ form.course }}
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="content">Upload Content File (TXT/PDF):</label>
+                {{ form.content }}
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Generate Questions</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
